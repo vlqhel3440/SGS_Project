@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>챗 지피티 문서검색 테스트</h2>
+
+    <form action="/send_request" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="파일 업로드 요청">
+    </form>
+
+
+    <form action="/action_page" method="post">
+      <br><label for="fname">질문</label><br>
+      <input type="text" id="fname" name="fname", placeholder="질문">
+      <input type="submit" value="Submit"><br>
+
+<p>응답: {{ response }}</p>
+    </form><br><br><br>
+    <form action="/send_delete" method="post" enctype="multipart/form-data">
+        <input type="text" id="dname" name="dname", placehlder="삭제할 document_id">
+        <input type="submit" value="업로드한 파일 지우기">
+    </form>
+        <form action="/send_all_delete" method="post" enctype="multipart/form-data">
+        <br><input type="submit" value="업로드한 파일 모두 지우기">
+    </form><br><br>
+
+    <form action="/get_data" method="post" enctype="multipart/form-data">
+        <input type="submit" value="업로드한 데이터 목록 확인">
+    </form>
+
+    <h2>문서 목록 </h2>
+<ul>
+    {% if files %}
+        {% for key, value in files.items() %}
+            <p><strong>document id</strong>: {{ key }}, <strong>문서 명</strong>: {{ value }}</p>
+        {% endfor %}
+    {% else %}
+            <p>문서 목록 없음</p>
+    {% endif %}
+</ul>
+
+</body>
+</html>
